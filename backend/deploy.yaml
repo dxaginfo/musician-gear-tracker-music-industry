@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  backend:
+    build: ./
+    ports:
+      - '5000:5000'
+    environment:
+      - DATABASE_URL=your_database_url
+      - STORAGE_BUCKET=your_bucket
+    depends_on:
+      - db
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: musician_gear
+    ports:
+      - '5432:5432'
